@@ -1,0 +1,80 @@
+services:
+
+  database:
+    container_name: database
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -h $$(hostname -i)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: redis-server --appendonly yes
+    environment:
+      - "timeout=60"
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG || exit 1"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  zookeeper:
+    container_name: zookeeper
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "22181:2181"
+    networks:
+      - backend
+    platform: linux/amd64
+    # TODO: find healthcheck for this as well
+
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    networks:
+      - backend
+    environment:
+      KAFKA_BROKER_ID: '1'
+      KAFKA_CREATE_TOPICS: 'free:1:1,paid:1:1'
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_MESSAGE_MAX_BYTES: '200000000'
+      # Added localhost to the list of listeners to allow for external connections for e2e/pkg/queue/service_test.go for
+      # testing purpose.
+      KAFKA_LISTENERS: 'CLIENT://:9092,EXTERNAL://:9093'
+      KAFKA_ADVERTISED_LISTENERS: 'CLIENT://kafka:9092,EXTERNAL://localhost:9093'
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: 'true'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT'
+      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'CLIENT'
+    healthcheck:
+      test: [ "CMD-SHELL", "kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe || exit 1" ]
+      start_period: 30s # trying to solve kafka unhealthy in CI out of nowhere :(
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+networks:
+  backend:
+    driver: bridge
