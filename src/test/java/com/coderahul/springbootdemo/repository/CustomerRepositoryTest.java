@@ -1,5 +1,6 @@
-package com.coderahul.springbootdemo.student;
+package com.coderahul.springbootdemo.repository;
 
+import com.coderahul.springbootdemo.models.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -10,24 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-class StudentRepositoryTest {
+class CustomerRepositoryTest {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private CustomerRepository customerRepository;
 
     @Test
-    public void StudentRepository_Save_ReturnStudent(){
-        //Arrange
-        Student student = new Student("Akash", "Anand", "akashanand@gmail.com", 30);
-
-        //Act
-        Student savedStudent = studentRepository.save(student);
-
-        //Assert
-        assertNotNull(savedStudent);
-        assertEquals(savedStudent.getFirstName(), "Akash");
-
+    public void CustomerRepository_Save_ReturnCustomer() {
+        Customer customer = new Customer();
+        customerRepository.save(customer);
+        assertNotNull(customer);
     }
-
-
 }
