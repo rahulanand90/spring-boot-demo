@@ -1,8 +1,4 @@
 package com.coderahul.springbootdemo;
-
-import com.coderahul.springbootdemo.student.Student;
-import com.coderahul.springbootdemo.student.StudentRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +13,7 @@ public class SpringBootDemoApplication {
 		SpringApplication.run(SpringBootDemoApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
 		return args -> {
 			List<Student> students = new ArrayList<>();
@@ -25,5 +21,5 @@ public class SpringBootDemoApplication {
 			students.add(new Student("Rahul", "Anand", "rahulanand@gmail.com", 34));
 			studentRepository.saveAll(students);
 		};
-	}
+	}*/
 }
