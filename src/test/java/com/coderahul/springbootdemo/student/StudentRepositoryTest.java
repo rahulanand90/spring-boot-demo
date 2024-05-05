@@ -1,5 +1,7 @@
 package com.coderahul.springbootdemo.student;
 
+import com.coderahul.springbootdemo.models.Student;
+import com.coderahul.springbootdemo.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;

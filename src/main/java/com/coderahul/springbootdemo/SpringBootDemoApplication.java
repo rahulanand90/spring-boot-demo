@@ -1,7 +1,7 @@
 package com.coderahul.springbootdemo;
 
-import com.coderahul.springbootdemo.student.Student;
-import com.coderahul.springbootdemo.student.StudentRepository;
+import com.coderahul.springbootdemo.models.Student;
+import com.coderahul.springbootdemo.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

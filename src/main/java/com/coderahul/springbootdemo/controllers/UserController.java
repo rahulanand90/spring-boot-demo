@@ -1,5 +1,7 @@
-package com.coderahul.springbootdemo.user;
+package com.coderahul.springbootdemo.controllers;
 
+import com.coderahul.springbootdemo.models.User;
+import com.coderahul.springbootdemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

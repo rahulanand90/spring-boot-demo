@@ -1,5 +1,6 @@
-package com.coderahul.springbootdemo.student;
+package com.coderahul.springbootdemo.repository;
 
+import com.coderahul.springbootdemo.models.Student;
 import org.springframework.data.repository.CrudRepository;
 
 // must extend one of three - JpaRepo, PagingRepo, CrudRepo

@@ -1,4 +1,4 @@
-package com.coderahul.springbootdemo.user;
+package com.coderahul.springbootdemo.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
