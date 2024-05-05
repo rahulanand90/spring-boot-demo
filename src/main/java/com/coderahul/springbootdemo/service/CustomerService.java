@@ -7,4 +7,5 @@ import java.util.List;
 public interface CustomerService {
     Customer getCustomer(Long id);
     List<Customer> getAllCustomer();
+    Customer addCustomer(Customer customer);
 }

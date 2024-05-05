@@ -3,11 +3,9 @@ package com.coderahul.springbootdemo.controllers;
 import com.coderahul.springbootdemo.models.Customer;
 import com.coderahul.springbootdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,14 +20,34 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/getCustomer/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable Long id){
-        return ResponseEntity.ok(customerService.getCustomer(id));
+        Customer customer = customerService.getCustomer(id);
+        if(customer==null){
+            return new ResponseEntity<>(new Customer(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @GetMapping("/getAllCustomers")
+    @GetMapping("/list")
     public ResponseEntity<List<Customer>> getCustomers(){
-        return ResponseEntity.ok(customerService.getAllCustomer());
+        List<Customer> customers = customerService.getAllCustomer();
+        if(customers==null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer){
+        customer = customerService.addCustomer(customer);
+        if(customer==null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
 }
