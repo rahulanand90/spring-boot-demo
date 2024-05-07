@@ -8,3 +8,8 @@ docker-compose up
 ### Swagger Doc
 http://localhost:9000/swagger-ui/index.html
 
+### #TODO
+1. Spring Transactional Annotation
+2. Builder Annotation
+3. Tests
+4. Kafka Implementation
