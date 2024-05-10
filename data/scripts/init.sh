@@ -1,1 +1,1 @@
-pg_restore -U postgres -d dvdrental /mnt/dvdrental
+docker exec database "pg_restore -U postgres -d postgres /mnt/dvdrental"
