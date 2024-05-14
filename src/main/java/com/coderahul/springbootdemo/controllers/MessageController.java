@@ -1,6 +1,7 @@
 package com.coderahul.springbootdemo.controllers;
 
 import com.coderahul.springbootdemo.kafka.KafkaProducer;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,8 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public void sendMessageToKafka(@RequestBody String message) {
+    public ResponseEntity<String> sendMessageToKafka(@RequestBody String message) {
         kafkaProducer.sendMessage(message);
+        return ResponseEntity.ok().body("Success");
     }
 }
