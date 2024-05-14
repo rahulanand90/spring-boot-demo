@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,7 +35,8 @@ public class Customer {
     private String email;
 
     @Column(name = "address_id")
-    private Integer addressId;
+    @OneToMany(mappedBy = "id", fetch=FetchType.EAGER) // FetchType.EAGER fires just 1 query
+    private List<Address> addressId;
 
     @Column(name = "activebool")
     private Boolean activeBool;
