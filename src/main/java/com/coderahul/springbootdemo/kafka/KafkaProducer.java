@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 public class KafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
+
+    @SuppressWarnings("FieldCanBeLocal")
     private final String TOPIC_NAME= "any-topic-name"; // Replace with your desired topic name
 
     public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
