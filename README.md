@@ -13,3 +13,8 @@ http://localhost:9000/swagger-ui/index.html
 2. Builder Annotation
 3. Tests
 4. Kafka Implementation
+
+### Access Kafka UI and Add a topic
+http://localhost:8090/
+
+
