@@ -13,11 +13,11 @@ http://localhost:9000/swagger-ui/index.html
 2. Builder Annotation
 3. Tests
 4. Kafka Implementation 
+5. Setting up JPA.
 
 
-### Access Kafka UI and Add a topic
+### Access Kafka UI
 http://localhost:8090/
 
-Kafka: https://medium.com/@issa.khodadadi88/implementing-kafka-producer-and-consumer-in-spring-boot-75796f0ce242
 
 ![alt text](docs/ErDiagram.png)
