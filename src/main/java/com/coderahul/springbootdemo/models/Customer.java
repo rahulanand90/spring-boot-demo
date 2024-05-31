@@ -34,9 +34,9 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address_id")
-    @OneToMany(mappedBy = "id", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Address> addressId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    private Address addressId;
 
     @Column(name = "activebool")
     private Boolean activeBool;

@@ -62,8 +62,8 @@ public class CustomerController {
             summary = "Save Customer details",
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200"),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "500"),
-                    @ApiResponse(description = "Bad Request", responseCode = "400")
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = {}),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", useReturnTypeSchema = false)
             }
     )
     @PostMapping("/add")
