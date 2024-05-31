@@ -1,9 +1,6 @@
 package com.coderahul.springbootdemo.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,9 +14,12 @@ import java.util.Date;
 public class Address {
 
     @Id
-    @GeneratedValue()
-    @Column(name = "address_id")
-    private Integer id;
+    @SequenceGenerator(name = "address_address_id_seq",
+            sequenceName = "address_address_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_address_id_seq")
+    @Column(name = "address_id", updatable = false, nullable = false)
+    private Long id;
 
     @Column(name = "address")
     private String address;

@@ -19,7 +19,7 @@ public class Customer {
             sequenceName = "customer_customer_id_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_customer_id_seq")
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "store_id")
@@ -35,7 +35,7 @@ public class Customer {
     private String email;
 
     @Column(name = "address_id")
-    @OneToMany(mappedBy = "id", fetch=FetchType.EAGER) // FetchType.EAGER fires just 1 query
+    @OneToMany(mappedBy = "id", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Address> addressId;
 
     @Column(name = "activebool")

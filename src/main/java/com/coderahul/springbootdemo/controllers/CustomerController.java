@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +17,8 @@ import java.util.List;
 @Tag(name = "Customer")
 public class CustomerController {
 
-    @Value("${server.port}")
-    private String serverPort;
+    //  @Value("${server.port}")
+    // private String serverPort;
 
     private final CustomerService customerService;
 
@@ -36,12 +35,11 @@ public class CustomerController {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500")
             }
     )
-
     // @GetMapping("/{id}")
     @RequestMapping(value = "/{id}", method =  { RequestMethod.GET }) // also this
     public ResponseEntity<Customer> getCustomer(@PathVariable Long id){
         Customer customer = customerService.getCustomer(id);
-        System.out.println(serverPort);
+        // System.out.println(serverPort);
         if(customer==null){
             return new ResponseEntity<>(new Customer(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -58,6 +56,15 @@ public class CustomerController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
+    @Operation(
+            description = "Save Customer details",
+            summary = "Save Customer details",
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200"),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400")
+            }
+    )
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer){
