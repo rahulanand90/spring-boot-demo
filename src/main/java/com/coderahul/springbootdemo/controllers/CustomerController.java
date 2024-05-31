@@ -39,22 +39,12 @@ public class CustomerController {
     // @GetMapping("/{id}")
     @RequestMapping(value = "/{id}", method =  { RequestMethod.GET }) // also this
     public ResponseEntity<Customer> getCustomer(@PathVariable Long id){
-        Customer customer = customerService.getCustomer(id);
-        // System.out.println(serverPort);
-        if(customer==null){
-            return new ResponseEntity<>(new Customer(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+        return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<Customer>> getCustomers(){
-        List<Customer> customers = customerService.getAllCustomer();
-        if(customers==null){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(customers, HttpStatus.OK);
+        return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
     }
 
     @Operation(
@@ -69,12 +59,7 @@ public class CustomerController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer){
-        customer = customerService.addCustomer(customer);
-        if(customer==null){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+        return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
     }
 
 }

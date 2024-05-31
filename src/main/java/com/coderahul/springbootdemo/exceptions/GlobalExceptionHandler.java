@@ -12,8 +12,8 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(PokemonNotFoundException.class)
-    public ResponseEntity<ErrorObject> handlePokemonNotFoundException(PokemonNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<ErrorObject> handlePokemonNotFoundException(CustomerNotFoundException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
 
@@ -24,8 +24,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ReviewNotFoundException.class)
-    public ResponseEntity<ErrorObject> handleReviewNotFoundException(ReviewNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<ErrorObject> handleReviewNotFoundException(AddressNotFoundException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
 

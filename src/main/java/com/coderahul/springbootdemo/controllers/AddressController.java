@@ -25,12 +25,7 @@ public class AddressController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Address> getCustomer(@PathVariable Long id){
-        Address address = addressService.getAddress(id);
-        if(address==null){
-            return new ResponseEntity<>(new Address(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(address, HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getAddress(id), HttpStatus.OK);
     }
 
     @Operation(
@@ -45,11 +40,6 @@ public class AddressController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Address> addCustomers(@RequestBody Address address){
-        address = addressService.addAddress(address);
-        if(address==null){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(address, HttpStatus.OK);
+        return new ResponseEntity<>(addressService.addAddress(address), HttpStatus.OK);
     }
 }
