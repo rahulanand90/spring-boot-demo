@@ -24,7 +24,7 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> getCustomer(@PathVariable Long id){
+    public ResponseEntity<Address> getCustomer(@PathVariable Long id) {
         return new ResponseEntity<>(addressService.getAddress(id), HttpStatus.OK);
     }
 
@@ -39,7 +39,7 @@ public class AddressController {
     )
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Address> addCustomers(@RequestBody Address address){
+    public ResponseEntity<Address> addCustomers(@RequestBody Address address) {
         return new ResponseEntity<>(addressService.addAddress(address), HttpStatus.OK);
     }
 }

@@ -37,13 +37,13 @@ public class CustomerController {
     )
 
     // @GetMapping("/{id}")
-    @RequestMapping(value = "/{id}", method =  { RequestMethod.GET }) // also this
-    public ResponseEntity<Customer> getCustomer(@PathVariable Long id){
+    @RequestMapping(value = "/{id}", method = {RequestMethod.GET}) // also this
+    public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Customer>> getCustomers(){
+    public ResponseEntity<List<Customer>> getCustomers() {
         return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
     }
 
@@ -58,7 +58,7 @@ public class CustomerController {
     )
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer){
+    public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer) {
         return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
     }
 
