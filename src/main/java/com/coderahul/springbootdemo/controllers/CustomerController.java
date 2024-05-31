@@ -35,6 +35,7 @@ public class CustomerController {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500")
             }
     )
+
     // @GetMapping("/{id}")
     @RequestMapping(value = "/{id}", method =  { RequestMethod.GET }) // also this
     public ResponseEntity<Customer> getCustomer(@PathVariable Long id){
