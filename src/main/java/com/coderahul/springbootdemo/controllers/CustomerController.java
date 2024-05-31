@@ -56,6 +56,7 @@ public class CustomerController {
                     @ApiResponse(description = "Bad Request", responseCode = "400", useReturnTypeSchema = false)
             }
     )
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer) {

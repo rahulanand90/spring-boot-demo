@@ -10,13 +10,4 @@ public class SpringBootDemoApplication {
         SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 
-//	@Bean
-//	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
-//		return args -> {
-//			List<Student> students = new ArrayList<>();
-//			students.add(new Student("Akash", "Anand", "akashanand@gmail.com", 30));
-//			students.add(new Student("Rahul", "Anand", "rahulanand@gmail.com", 34));
-//			studentRepository.saveAll(students);
-//		};
-//	}
 }
