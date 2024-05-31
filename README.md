@@ -19,3 +19,5 @@ http://localhost:9000/swagger-ui/index.html
 http://localhost:8090/
 
 Kafka: https://medium.com/@issa.khodadadi88/implementing-kafka-producer-and-consumer-in-spring-boot-75796f0ce242
+
+![alt text](docs/ErDiagram.png)

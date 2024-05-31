@@ -1,6 +1,5 @@
 package com.coderahul.springbootdemo.exceptions;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,8 +11,8 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(PokemonNotFoundException.class)
-    public ResponseEntity<ErrorObject> handlePokemonNotFoundException(PokemonNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<ErrorObject> handlePokemonNotFoundException(CustomerNotFoundException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
 
@@ -21,11 +20,11 @@ public class GlobalExceptionHandler {
         errorObject.setMessage(ex.getMessage());
         errorObject.setTimestamp(new Date());
 
-        return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorObject, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ReviewNotFoundException.class)
-    public ResponseEntity<ErrorObject> handleReviewNotFoundException(ReviewNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<ErrorObject> handleReviewNotFoundException(AddressNotFoundException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
 
@@ -33,6 +32,6 @@ public class GlobalExceptionHandler {
         errorObject.setMessage(ex.getMessage());
         errorObject.setTimestamp(new Date());
 
-        return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorObject, HttpStatus.NOT_FOUND);
     }
 }

@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +18,7 @@ public class Customer {
             sequenceName = "customer_customer_id_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_customer_id_seq")
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "store_id")
@@ -34,9 +33,9 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address_id")
-    @OneToMany(mappedBy = "id", fetch=FetchType.EAGER) // FetchType.EAGER fires just 1 query
-    private List<Address> addressId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    private Address addressId;
 
     @Column(name = "activebool")
     private Boolean activeBool;

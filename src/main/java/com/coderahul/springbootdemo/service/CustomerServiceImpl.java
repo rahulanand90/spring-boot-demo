@@ -1,5 +1,6 @@
 package com.coderahul.springbootdemo.service;
 
+import com.coderahul.springbootdemo.exceptions.AddressNotFoundException;
 import com.coderahul.springbootdemo.models.Customer;
 import com.coderahul.springbootdemo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    private static final String CUSTOMER_NOT_FOUND = "Customer could not be found";
     private final CustomerRepository customerRepository;
+
 
     @Autowired
     public CustomerServiceImpl(CustomerRepository customerRepository) {
@@ -21,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomer(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
-        return customer.orElse(null);
+        return customerRepository.findById(id).orElseThrow(() -> new AddressNotFoundException(CUSTOMER_NOT_FOUND));
     }
 
     @Override
