@@ -30,8 +30,9 @@ public class Address {
     @Column(name = "district")
     private String district;
 
-    @Column(name = "city_id")
-    private Integer cityId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    private City cityId;
 
     @Column(name = "postal_code")
     private String postalCode;
