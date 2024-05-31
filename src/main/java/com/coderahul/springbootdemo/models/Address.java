@@ -1,5 +1,6 @@
 package com.coderahul.springbootdemo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,5 +43,9 @@ public class Address {
 
     @Column(name = "last_update")
     private Date lastUpdate;
+
+    @JsonIgnoreProperties("address")
+    @OneToOne(mappedBy = "address", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Customer customer;
 
 }
