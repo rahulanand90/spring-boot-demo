@@ -32,6 +32,7 @@ public class Address {
     private String district;
 
     @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "city_id")
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     private City cityId;
 
