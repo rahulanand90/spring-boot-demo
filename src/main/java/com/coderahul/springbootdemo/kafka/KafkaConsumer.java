@@ -6,8 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "any-topic-name", groupId = "your-consumer-group-id")
-    public void consumeMessage(String message) {
-        System.out.println("Received message: " + message);
+    private static int counter = 0;
+    @KafkaListener(topics = Constants.HELLO_WORLD_TOPIC, groupId = Constants.CONSUMER_GROUP_ID)
+    public void consumeHelloWorldMessage(String message) throws InterruptedException {
+        Thread.sleep(5000);
+        System.out.println("Received message: " + message + " ::counter:: " + counter);
+        counter++;
     }
 }
