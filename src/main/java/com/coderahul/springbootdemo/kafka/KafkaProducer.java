@@ -13,8 +13,10 @@ public class KafkaProducer {
     }
 
     public void sendMessage(String message) {
-        kafkaTemplate.send(Constants.HELLO_WORLD_TOPIC, message);
-        System.out.printf("Message %s has been successfully sent to the topic: %s\n", message,
-                Constants.HELLO_WORLD_TOPIC);
+        for(int i=0; i<10000; i++){
+            kafkaTemplate.send(Constants.HELLO_WORLD_TOPIC, message);
+        }
+
+        System.out.printf("Message has been successfully sent to the topic: %s\n", Constants.HELLO_WORLD_TOPIC);
     }
 }

@@ -18,7 +18,7 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public ResponseEntity<String> sendMessageToKafka(@RequestBody String message) {
+    public ResponseEntity<String> sendMessageToKafka(@RequestBody String message) throws InterruptedException {
         kafkaProducer.sendMessage(message);
         return ResponseEntity.ok().body("Success");
     }
