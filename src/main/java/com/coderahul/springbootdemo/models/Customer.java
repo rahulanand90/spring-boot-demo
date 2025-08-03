@@ -14,10 +14,7 @@ import java.util.Date;
 public class Customer {
 
     @Id
-    @SequenceGenerator(name = "customer_customer_id_seq",
-            sequenceName = "customer_customer_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_customer_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id", updatable = false, nullable = false)
     private Long id;
 
